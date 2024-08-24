@@ -1,0 +1,21 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+  
+    .ant-typography {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+  
+    .ant-form {
+      width: 300px;
+      padding: 24px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+  
