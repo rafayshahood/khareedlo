@@ -1,21 +1,87 @@
+
+// Variables for consistent styling
+$primary-color: #3498db;
+$background-color: #0a3980;
+$background: #ffffff;
+
+$text-color: #333;
+$text-color-2: rgb(121, 121, 121);
+
+$border-radius: 8px;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 .login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f2f5;
-  
-    .ant-typography {
-      text-align: center;
-      margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: $background;
+  color: $text-color;
+
+
+    .login-image {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      margin-bottom: 50px;
+
+      .logo {
+        width: 75px;
+        height: auto;
+        border-radius: 50px;
+
+      }
     }
-  
-    .ant-form {
-      width: 300px;
-      padding: 24px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
+  .ant-typography {
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 16px;
   }
   
+.signin-sub{
+  color: $text-color-2;
+  margin-bottom: 24px;
+
+}
+  .ant-form {
+    background: $background;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 20px;
+    padding-bottom: 32px;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    width: 100%;
+    max-width: 400px;
+
+    .ant-form-item {
+      margin-bottom: 28px;
+
+      label {
+        font-weight: 600;
+      }
+
+      input,
+      .ant-input-password {
+        border-radius: $border-radius;
+      }
+    }
+
+    .ant-btn {
+      width: 100%;
+      background: $primary-color;
+      border-color: $primary-color;
+      border-radius: $border-radius;
+      padding: 10px 0;
+      font-size: 16px;
+      font-weight: 600;
+
+      &:hover {
+        background: darken($primary-color, 10%);
+        border-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}

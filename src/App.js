@@ -1,18 +1,17 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import ProductsPage from './pages/ProductsPage';
+import ProductListPage from './pages/ProductsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
+import AddProductPage from './pages/AddProduct';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/products" element={<ProductListPage />} />
         <Route path="/manage-products/:id" element={<ProductDetailsPage />} />
-        <Route path="*" element={<LoginPage />} /> {/* Redirect to login by default */}
-
+        <Route path="/add-product" element={<AddProductPage />} />
       </Routes>
     </Router>
   );

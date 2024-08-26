@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Button } from 'antd';
+import { Table, Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import { fetchProducts } from '../features/productsSlice';
-
+import { fetchProducts, deleteProduct } from '../features/productsSlice'; // Import deleteProduct action
+import TopHeader from '../components/TopHeader';
+import '../style/ProductsPage.scss'
 const ProductListPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useNavigate for navigation
@@ -13,6 +14,10 @@ const ProductListPage = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    dispatch(deleteProduct(id));
+  };
 
   const columns = [
     {
@@ -46,15 +51,24 @@ const ProductListPage = () => {
       title: 'Actions',
       key: 'actions',
       render: (text, record) => (
-        <Button type="primary" onClick={() => navigate(`/manage-products/${record.id}`)}>
-          Edit
-        </Button>
+        <Space>
+          <Button type="primary" onClick={() => navigate(`/manage-products/${record.id}`)}>
+            Edit
+          </Button>
+          <Button type="danger" onClick={() => handleDelete(record.id)}>
+            Delete
+          </Button>
+        </Space>
       ),
     },
   ];
 
   return (
     <div>
+      <TopHeader /> {/* Add TopHeader component */}
+      <Button type="primary" onClick={() => navigate('/add-product')} style={{ marginBottom: 16 }}>
+        Add New Product
+      </Button>
       <Table
         dataSource={products}
         columns={columns}

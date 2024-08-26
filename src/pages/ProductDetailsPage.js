@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Upload, DatePicker } from 'antd';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import moment from 'moment'; // Import moment for date handling
-import { updateProduct } from '../features/productsSlice';
+import moment from 'moment'; 
+import { updateProduct, fetchProducts } from '../features/productsSlice';
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -32,10 +32,11 @@ const ProductDetailsPage = () => {
     const updatedProduct = {
       ...product,
       ...values,
-      expiryDate: values.expiryDate.format('YYYY-MM-DD'), // Format the date as needed
+      expiryDate: values.expiryDate.format('YYYY-MM-DD'),
       image: fileList.length > 0 ? fileList[0].url : product.image,
     };
     dispatch(updateProduct(updatedProduct));
+    dispatch(fetchProducts()); // Re-fetch products after update
     navigate('/products');  // Redirect after updating
   };
   
@@ -47,7 +48,7 @@ const ProductDetailsPage = () => {
       onFinish={onFinish}
       initialValues={{
         ...product,
-        expiryDate: product ? moment(product.expiryDate) : null, // Convert string date to moment
+        expiryDate: product ? moment(product.expiryDate) : null,
       }}
     >
       <Form.Item name="name" label="Product Name">

@@ -1,0 +1,36 @@
+@import '~antd/dist/reset.css'; // Ensure Ant Design styles are included
+
+$primary-color: #3498db;
+$background-color: #0a3980;
+$text-color: #ffffff;
+$border-radius: 8px;
+
+.top-header {
+  background: $background-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+
+    .username {
+      color: $text-color;
+      font-size: 16px;
+      margin-right: 20px;
+    }
+
+    .logout-button {
+      border-radius: $border-radius;
+      background: $primary-color;
+      border-color: $primary-color;
+
+      &:hover {
+        background: darken($primary-color, 10%);
+        border-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}

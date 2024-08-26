@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const mockProducts = [
   {
@@ -20,7 +20,6 @@ const mockProducts = [
   // Add more products as needed
 ];
 
-// Asynchronous thunk to fetch products
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -43,6 +42,12 @@ const productsSlice = createSlice({
         state.items[index] = action.payload;  // Update the specific product
       }
     },
+    addProduct: (state, action) => {
+      state.items.push(action.payload); // Add new product
+    },
+    deleteProduct: (state, action) => {
+      state.items = state.items.filter(item => item.id !== action.payload); // Delete product by ID
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -60,6 +65,6 @@ const productsSlice = createSlice({
   },
 });
 
-export const { updateProduct } = productsSlice.actions;
+export const { updateProduct, addProduct, deleteProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;
