@@ -1,0 +1,25 @@
+.top-bar {
+  background-color:#2c3e50;
+  height: 64px;
+  width: 100vw;
+  margin-bottom: 20px;
+
+  .username {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 30px; // Adjusts spacing from the right edge
+  }
+
+  .logout-icon {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    margin-right: 90px; // Adjusts spacing from the right edge
+    position: absolute;
+    right: 20px; // Positions the icon near the right edge
+    top: 15px;
+    text-align: center;
+  }
+}

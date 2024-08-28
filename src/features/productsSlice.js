@@ -23,10 +23,16 @@ const mockProducts = [
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(mockProducts);
+      const storedProducts = localStorage.getItem('products');
+      if (storedProducts) {
+        resolve(JSON.parse(storedProducts)); // Use stored products if available
+      } else {
+        resolve(mockProducts); // Fallback to mock products
+      }
     }, 1000);
   });
 });
+
 
 const productsSlice = createSlice({
   name: 'products',
@@ -40,13 +46,16 @@ const productsSlice = createSlice({
       const index = state.items.findIndex((item) => item.id === action.payload.id);
       if (index !== -1) {
         state.items[index] = action.payload;  // Update the specific product
+        localStorage.setItem('products', JSON.stringify(state.items)); // Update local storage
       }
     },
     addProduct: (state, action) => {
       state.items.push(action.payload); // Add new product
+      localStorage.setItem('products', JSON.stringify(state.items)); // Update local storage
     },
     deleteProduct: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload); // Delete product by ID
+      localStorage.setItem('products', JSON.stringify(state.items)); // Update local storage
     },
   },
   extraReducers: (builder) => {
@@ -64,6 +73,7 @@ const productsSlice = createSlice({
       });
   },
 });
+
 
 export const { updateProduct, addProduct, deleteProduct } = productsSlice.actions;
 

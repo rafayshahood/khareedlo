@@ -13,7 +13,7 @@ const authSlice = createSlice({
       const { username, password } = action.payload;
 
       // Hardcoded credentials
-      const validUsername = 'admin';
+      const validUsername = 'Intern';
       const validPassword = 'admin';
 
       if (username === validUsername && password === validPassword) {

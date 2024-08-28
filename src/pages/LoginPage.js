@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button, Typography, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../features/authSlice';
@@ -9,7 +9,6 @@ function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const onFinish = (values) => {
     dispatch(login({ username: values.username, password: values.password }));
@@ -18,7 +17,6 @@ function LoginPage() {
   useEffect(() => {
     if (isAuthenticated) {
       message.success('Welcome Back!', 2); // Display welcome message
-      setLoginSuccess(true);
       setTimeout(() => navigate('/products'), 2000); // Redirect after message
     }
   }, [isAuthenticated, navigate]);

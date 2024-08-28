@@ -1,22 +1,36 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Button, Space } from 'antd';
+import { Table, Button, Space, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import { fetchProducts, deleteProduct } from '../features/productsSlice'; // Import deleteProduct action
 import TopHeader from '../components/TopHeader';
 import '../style/ProductsPage.scss'
+
 const ProductListPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useNavigate for navigation
   const products = useSelector((state) => state.products.items);
-  const loading = useSelector((state) => state.products.loading);
+  // const loading = useSelector((state) => state.products.loading);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [productIdToDelete, setProductIdToDelete] = React.useState(null);
+
   const handleDelete = (id) => {
-    dispatch(deleteProduct(id));
+    setProductIdToDelete(id);
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    dispatch(deleteProduct(productIdToDelete));
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   const columns = [
@@ -55,7 +69,7 @@ const ProductListPage = () => {
           <Button type="primary" onClick={() => navigate(`/manage-products/${record.id}`)}>
             Edit
           </Button>
-          <Button type="danger" onClick={() => handleDelete(record.id)}>
+          <Button type="primary" danger='true' onClick={() => handleDelete(record.id)}>
             Delete
           </Button>
         </Space>
@@ -65,17 +79,33 @@ const ProductListPage = () => {
 
   return (
     <div>
-      <TopHeader /> {/* Add TopHeader component */}
-      <Button type="primary" onClick={() => navigate('/add-product')} style={{ marginBottom: 16 }}>
-        Add New Product
+      <TopHeader /> 
+      <div className='body'>
+      <h1>Products List</h1>
+      <Button type="primary" onClick={() => navigate('/add-product')} style={{ marginBottom: 16 }} className='add-button'>
+              Add New Product
       </Button>
       <Table
         dataSource={products}
         columns={columns}
-        loading={loading}
+        // loading={loading}
         rowKey="id"
         pagination={{ pageSize: 5 }}
+        scroll={true}
+        size='large'
+        className='table'
+        
       />
+
+        <Modal
+          title="Confirm Delete"
+          open={isModalOpen}
+          onOk={handleConfirmDelete}
+          onCancel={handleCancel}
+        >
+          <p>Are you sure you want to delete this product?</p>
+        </Modal>
+      </div>
     </div>
   );
 };

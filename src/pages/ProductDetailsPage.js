@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, Upload, DatePicker } from 'antd';
+import { Form, Input, Button, Upload, DatePicker, message } from 'antd';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment'; 
 import { updateProduct, fetchProducts } from '../features/productsSlice';
+import TopHeader from '../components/TopHeader';
+import '../style/ProductDetailsPage.scss';
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -29,55 +31,74 @@ const ProductDetailsPage = () => {
   }, [product]);
 
   const onFinish = (values) => {
+    console.log('onFinish called:', values);
     const updatedProduct = {
       ...product,
       ...values,
-      expiryDate: values.expiryDate.format('YYYY-MM-DD'),
+      expiryDate: values.expiryDate ? moment(values.expiryDate).format('YYYY-MM-DD') : product.expiryDate,
+
+
+      
       image: fileList.length > 0 ? fileList[0].url : product.image,
     };
+    message.success('Successfully Updated!', 2); // Display welcome message
     dispatch(updateProduct(updatedProduct));
-    dispatch(fetchProducts()); // Re-fetch products after update
-    navigate('/products');  // Redirect after updating
+    dispatch(fetchProducts());
+    
+    // setTimeout(()=>{
+      navigate('/products');
+    // },2000)
   };
-  
 
   const handleFileChange = ({ fileList }) => setFileList(fileList);
 
   return (
-    <Form
-      onFinish={onFinish}
-      initialValues={{
-        ...product,
-        expiryDate: product ? moment(product.expiryDate) : null,
-      }}
-    >
-      <Form.Item name="name" label="Product Name">
-        <Input />
-      </Form.Item>
-      <Form.Item name="price" label="Price">
-        <Input type="number" />
-      </Form.Item>
-      <Form.Item name="quantity" label="Quantity">
-        <Input type="number" />
-      </Form.Item>
-      <Form.Item name="expiryDate" label="Expiry Date">
-        <DatePicker />
-      </Form.Item>
-      <Form.Item name="image" label="Product Image">
-        <Upload
-          listType="picture"
-          fileList={fileList}
-          onChange={handleFileChange}
-        >
-          <Button>Upload</Button>
-        </Upload>
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Save
-        </Button>
-      </Form.Item>
-    </Form>
+    <div>
+    <TopHeader/>
+    <div className="product-details-page">
+      <h1>Edit Product</h1>
+      <Form 
+        onFinish={onFinish}
+        layout='vertical'
+        labelAlign='left'
+        size	= 'large'
+        initialValues={{
+          ...product,
+          expiryDate: product ? moment(product.expiryDate) : null,
+        }}
+      >
+        <Form.Item name="name" label="Product Name" rules={[{ required: true, message: 'Please input the product name!' }]}>
+          <Input />
+        </Form.Item>
+
+        <Form.Item name="price" label="Price" rules={[{ required: true, message: 'Please input the price!' }]}>
+          <Input type="number" />
+        </Form.Item>
+
+        <Form.Item label="Quantity" style={{ display:'inline-block', width: '45%' }} rules={[{ required: true, message: 'Please input the quantity!' }]}>
+          <Input type="number" style={{ width: '100%' }} />
+        </Form.Item>
+
+        <Form.Item label="Expiry Date" style={{display:'inline-block',width: '45%' , marginLeft: '10%'}} rules={[{ required: true, message: 'Please select the expiry date!' }]}>
+          <DatePicker style={{ width: '100%' }} />
+        </Form.Item>
+        <Form.Item name="image" label="Product Image">
+          <Upload
+            listType="picture"
+            fileList={fileList}
+            onChange={handleFileChange}
+          >
+            <Button>Upload</Button>
+          </Upload>
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" style={{width:'30%'}}>
+            Save
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
+    </div>
   );
 };
 

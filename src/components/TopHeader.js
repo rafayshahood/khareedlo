@@ -1,30 +1,32 @@
-// import React from 'react';
-// import { Layout, Button, Typography } from 'antd';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { logout } from '../features/authSlice'; // Import logout action
-// import '../style/TopHeader.scss'; // Import SCSS file for custom styles
+import React from 'react';
+import { Layout, Typography, Space } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../features/authSlice';
+import { useNavigate } from 'react-router-dom';
+import '../style/TopBar.scss';
 
-// const { Header } = Layout;
-// const { Text } = Typography;
+const { Header } = Layout;
+const { Text } = Typography;
 
-// const TopHeader = () => {
-//   const dispatch = useDispatch();
-//   const username = useSelector((state) => state.auth.user?.username); // Fetch username from Redux store
+const TopBar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const username = useSelector((state) => state.auth.user?.username);
 
-//   const handleLogout = () => {
-//     dispatch(logout()); // Dispatch logout action
-//   };
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
 
-//   return (
-//     <Header className="top-header">
-//       <div className="header-content">
-//         <Text className="username">Welcome, {username}</Text>
-//         <Button type="primary" onClick={handleLogout} className="logout-button">
-//           Logout
-//         </Button>
-//       </div>
-//     </Header>
-//   );
-// };
+  return (
+    <Header className="top-bar">
+        <Text className="username">Welcome, {username}</Text>
+        <Space>
+          <LogoutOutlined onClick={handleLogout} className="logout-icon" />
+        </Space>
+    </Header>
+  );
+};
 
-// export default TopHeader;
+export default TopBar;
