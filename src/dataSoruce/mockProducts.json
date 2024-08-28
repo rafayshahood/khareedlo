@@ -1,0 +1,83 @@
+[
+    {
+      "id": 1,
+      "name": "Classic White T-Shirt",
+      "price": 2500,
+      "quantity": 15,
+      "expiryDate": "2025-12-31",
+      "image": "https://via.placeholder.com/150/FFFFFF/000000?text=Classic+White+T-Shirt"
+    },
+    {
+      "id": 2,
+      "name": "Denim Jacket",
+      "price": 7500,
+      "quantity": 7,
+      "expiryDate": "2025-11-30",
+      "image": "https://via.placeholder.com/150/0000FF/FFFFFF?text=Denim+Jacket"
+    },
+    {
+      "id": 3,
+      "name": "Black Skinny Jeans",
+      "price": 5500,
+      "quantity": 20,
+      "expiryDate": "2025-10-15",
+      "image": "https://via.placeholder.com/150/000000/FFFFFF?text=Black+Skinny+Jeans"
+    },
+    {
+      "id": 4,
+      "name": "Red Plaid Shirt",
+      "price": 4000,
+      "quantity": 10,
+      "expiryDate": "2025-09-25",
+      "image": "https://via.placeholder.com/150/FF0000/FFFFFF?text=Red+Plaid+Shirt"
+    },
+    {
+      "id": 5,
+      "name": "Leather Boots",
+      "price": 12000,
+      "quantity": 5,
+      "expiryDate": "2025-12-01",
+      "image": "https://via.placeholder.com/150/8B4513/FFFFFF?text=Leather+Boots"
+    },
+    {
+      "id": 6,
+      "name": "Summer Dress",
+      "price": 6000,
+      "quantity": 8,
+      "expiryDate": "2025-08-20",
+      "image": "https://via.placeholder.com/150/FF69B4/FFFFFF?text=Summer+Dress"
+    },
+    {
+      "id": 7,
+      "name": "Woolen Scarf",
+      "price": 2000,
+      "quantity": 30,
+      "expiryDate": "2025-11-05",
+      "image": "https://via.placeholder.com/150/808080/FFFFFF?text=Woolen+Scarf"
+    },
+    {
+      "id": 8,
+      "name": "Running Shoes",
+      "price": 9500,
+      "quantity": 12,
+      "expiryDate": "2025-10-10",
+      "image": "https://via.placeholder.com/150/00FF00/FFFFFF?text=Running+Shoes"
+    },
+    {
+      "id": 9,
+      "name": "Woolen Beanie",
+      "price": 1500,
+      "quantity": 25,
+      "expiryDate": "2025-09-30",
+      "image": "https://via.placeholder.com/150/663399/FFFFFF?text=Woolen+Beanie"
+    },
+    {
+      "id": 10,
+      "name": "Faux Leather Jacket",
+      "price": 10000,
+      "quantity": 6,
+      "expiryDate": "2025-12-15",
+      "image": "https://via.placeholder.com/150/2F4F4F/FFFFFF?text=Faux+Leather+Jacket"
+    }
+  ]
+  

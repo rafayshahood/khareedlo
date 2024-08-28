@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Button, Space, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import { fetchProducts, deleteProduct } from '../features/productsSlice'; // Import deleteProduct action
-import TopHeader from '../components/TopHeader';
-import '../style/ProductsPage.scss'
+import { fetchProducts, deleteProduct } from '../slices/productsSlice'; // Import deleteProduct action
+import TopHeader from '../components/topBar';
+import '../style/productsPage.scss'
 
 const ProductListPage = () => {
   const dispatch = useDispatch();

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Form, Input, Button, Upload, DatePicker } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../features/productsSlice';
-import TopHeader from '../components/TopHeader';
-import '../style/AddProduct.scss';
+import { addProduct } from '../slices/productsSlice';
+import TopHeader from '../components/topBar';
+import '../style/addProduct.scss';
 
 const AddProductPage = () => {
   const navigate = useNavigate();

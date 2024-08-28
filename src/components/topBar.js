@@ -2,9 +2,9 @@ import React from 'react';
 import { Layout, Typography, Space } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../features/authSlice';
+import { logout } from '../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
-import '../style/TopBar.scss';
+import '../style/components/topBar.scss';
 
 const { Header } = Layout;
 const { Text } = Typography;

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Button, Typography, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../features/authSlice';
+import { login } from '../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
-import '../style/LoginPage.scss';
+import '../style/loginPage.scss';
 import logo from '../logo.webp'
 function LoginPage() {
   const dispatch = useDispatch();
